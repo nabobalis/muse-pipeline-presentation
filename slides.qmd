@@ -1,0 +1,35 @@
+---
+pagetitle: "MUSE Pipeline Overview"
+output-file: index.html
+format:
+  dtslides-revealjs:
+    css: layout.css
+    width: 1280
+    height: 720
+    transition: none
+    background-transition: none
+    center: true
+    controls: true
+    progress: true
+    slide-number: true
+    hash: true
+    incremental: false
+execute:
+  echo: false
+---
+
+{{< include sections/00-title.qmd >}}
+
+{{< include sections/00-toc.qmd >}}
+
+{{< include sections/01-requirements.qmd >}}
+
+{{< include sections/02-pipeline-architecture.qmd >}}
+
+{{< include sections/03-science-calibration.qmd >}}
+
+{{< include sections/04-aws-vs-local.qmd >}}
+
+{{< include sections/05-l2-to-l3.qmd >}}
+
+{{< include sections/06-questions.qmd >}}

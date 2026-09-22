@@ -1,0 +1,410 @@
+/* dtslides Academic palette; the rules below restore the deck's layouts. */
+:root {
+  --muse-bg: #ffffff;
+  --muse-dark: #1b365d;
+  --muse-ink: #222222;
+  --muse-muted: #6c757d;
+  --muse-blue: #4a6fa5;
+  --muse-pale-blue: #e8eef6;
+  --muse-cyan: #0277bd;
+  --muse-pale-cyan: #e3f3fb;
+  --muse-green: #2e7d32;
+  --muse-pale-green: #e9f5eb;
+  --muse-amber: #e65100;
+  --muse-pale-amber: #fff1e5;
+  --muse-red: #c62828;
+  --muse-pale-red: #fdeaea;
+  --muse-indigo: #41558f;
+  --muse-pale-indigo: #eef0f9;
+  --muse-line: #d6dce5;
+  --muse-card: #ffffff;
+  --muse-border: #c8d2df;
+}
+
+.reveal {
+  font-family: "Roboto", sans-serif;
+  color: var(--muse-ink);
+  font-size: 30px;
+}
+
+.reveal .slides section {
+  box-sizing: border-box;
+  width: 1280px;
+  height: 720px;
+  padding: 28px 42px;
+  text-align: left;
+  background: var(--muse-bg);
+  color: var(--muse-ink);
+  line-height: 1.24;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  font-family: "Lato", sans-serif;
+  text-transform: none;
+  color: var(--muse-dark);
+  font-weight: 700;
+}
+
+.reveal h2 {
+  font-size: 34px;
+  line-height: 1.05;
+  margin: 0 0 7px 0;
+  letter-spacing: -0.01em;
+}
+
+.reveal .slides section.slide > h2 {
+  text-align: left;
+}
+
+.reveal h3 {
+  font-size: 26px;
+  line-height: 1.12;
+  margin: 0 0 9px 0;
+}
+
+.reveal p,
+.reveal li {
+  font-size: 18px;
+  line-height: 1.30;
+}
+
+.reveal ul {
+  margin: 8px 0 0 22px;
+  padding: 0;
+}
+
+.reveal li {
+  margin-bottom: 7px;
+}
+
+.reveal strong {
+  color: var(--muse-dark);
+  font-weight: 700;
+}
+
+.kicker {
+  margin: 0 0 8px 0;
+  font-size: 13px !important;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--muse-blue);
+}
+
+.subtitle {
+  margin: 0 0 14px 0;
+  font-size: 17px !important;
+  line-height: 1.25;
+  color: var(--muse-muted);
+  max-width: 1080px;
+}
+
+.rule {
+  height: 1px;
+  background: var(--muse-line);
+  margin: 9px 0 16px 0;
+}
+
+.title-slide > h2.title-slide,
+.section-slide > h2.section-slide {
+  display: none;
+}
+
+.deck-label {
+  font-size: 13px !important;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--muse-blue);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-top: 8px;
+}
+
+.deck-title {
+  font-size: 68px !important;
+  color: var(--muse-dark);
+  line-height: 0.95;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  margin-top: 138px;
+}
+
+.deck-subtitle {
+  font-size: 25px !important;
+  color: var(--muse-muted);
+  line-height: 1.22;
+  width: 980px;
+  margin-top: 18px;
+}
+
+.deck-footer {
+  position: absolute;
+  left: 42px;
+  bottom: 30px;
+  font-size: 14px !important;
+  color: var(--muse-muted);
+  line-height: 1.2;
+}
+
+.accent-line {
+  width: 220px;
+  height: 4px;
+  background: var(--muse-blue);
+  border-radius: 999px;
+  margin: 22px 0 18px 0;
+}
+
+.section-number {
+  font-size: 90px !important;
+  font-weight: 800;
+  color: #bfdbfe;
+  line-height: 1;
+  margin-top: 12px;
+}
+
+.section-heading {
+  font-size: 52px !important;
+  color: var(--muse-dark);
+  line-height: 1;
+  margin-top: 116px !important;
+}
+
+.section-subhead {
+  color: var(--muse-muted);
+  font-size: 23px !important;
+  max-width: 980px;
+  line-height: 1.25;
+}
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 15px; }
+
+.card,
+.node,
+.banner {
+  box-sizing: border-box;
+  background: var(--muse-card);
+  border: 1px solid var(--muse-border);
+  border-radius: 13px;
+  padding: 13px 15px;
+}
+
+.card { min-height: 100%; }
+.card p { margin: 4px 0; }
+
+.label {
+  font-size: 14px !important;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--muse-muted);
+  margin: 0 0 7px 0;
+}
+.label.blue { color: var(--muse-blue); }
+.label.green { color: var(--muse-green); }
+.label.amber { color: var(--muse-amber); }
+.label.red { color: var(--muse-red); }
+.label.cyan { color: var(--muse-cyan); }
+.label.indigo { color: var(--muse-indigo); }
+
+.pale-blue { background: var(--muse-pale-blue); border-color: var(--muse-blue); }
+.pale-cyan { background: var(--muse-pale-cyan); border-color: var(--muse-cyan); }
+.pale-green { background: var(--muse-pale-green); border-color: var(--muse-green); }
+.pale-amber { background: var(--muse-pale-amber); border-color: var(--muse-amber); }
+.pale-red { background: var(--muse-pale-red); border-color: var(--muse-red); }
+.pale-indigo { background: var(--muse-pale-indigo); border-color: var(--muse-indigo); }
+
+/* Not `.callout`: Quarto rewrites those divs and drops extra classes. */
+.banner {
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 16.5px !important;
+  font-weight: 600;
+  line-height: 1.25;
+  border-width: 1.5px;
+  border-color: var(--muse-blue);
+  background: var(--muse-pale-blue);
+}
+.banner.blue { background: var(--muse-pale-blue); border-color: var(--muse-blue); }
+.banner.cyan { background: var(--muse-pale-cyan); border-color: var(--muse-cyan); }
+.banner.green { background: var(--muse-pale-green); border-color: var(--muse-green); }
+.banner.amber { background: var(--muse-pale-amber); border-color: var(--muse-amber); }
+.banner.red { background: var(--muse-pale-red); border-color: var(--muse-red); }
+.banner.indigo { background: var(--muse-pale-indigo); border-color: var(--muse-indigo); }
+
+/* Lone card, centered; pair with a width class (.w75 etc). */
+.card.center { margin-inline: auto; min-height: 0; }
+
+.flow-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.flow-row.compact { gap: 6px; }
+
+.node {
+  min-height: 66px;
+  text-align: center;
+  font-size: 15.5px !important;
+  line-height: 1.18;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.arrow {
+  flex: 0 0 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-weight: 800;
+  font-size: 22px !important;
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.toc-item {
+  border: 1px solid #dbe2ea;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 13px 15px;
+  min-height: 105px;
+}
+
+.toc-num {
+  font-size: 12px !important;
+  color: var(--muse-blue);
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.toc-title {
+  font-size: 17px !important;
+  color: var(--muse-dark);
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.toc-desc {
+  font-size: 13.5px !important;
+  color: var(--muse-muted);
+  line-height: 1.25;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 235px 1fr 92px;
+  gap: 15px;
+  align-items: center;
+  margin: 11px 0;
+  font-size: 14px !important;
+}
+
+.bar-bg {
+  height: 28px;
+  background: #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.bar-fill { height: 100%; background: var(--muse-blue); }
+.bar-fill.blue { background: var(--muse-blue); }
+.bar-fill.cyan { background: var(--muse-cyan); }
+.bar-fill.green { background: var(--muse-green); }
+.bar-fill.amber { background: var(--muse-amber); }
+.bar-fill.red { background: var(--muse-red); }
+.bar-fill.indigo { background: var(--muse-indigo); }
+.metric { font-weight: 800; color: var(--muse-dark); }
+.bar-label { font-size: 14px !important; align-self: center; }
+
+.status-table,
+.reveal table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px !important;
+}
+
+.status-table th,
+.status-table td,
+.reveal table th,
+.reveal table td {
+  text-align: left;
+  padding: 7px 7px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: top;
+}
+
+.status-table th,
+.reveal table th {
+  color: var(--muse-muted);
+  font-weight: 700;
+}
+
+/* Numbers (right-aligned cells) never wrap, e.g. $77–201. */
+.reveal table td[style*="right"] { white-space: nowrap; }
+
+.compact p, .compact li { font-size: 15px !important; }
+.footer-note {
+  position: absolute;
+  left: 42px;
+  right: 42px;
+  bottom: 18px;
+  font-size: 12.5px !important;
+  color: var(--muse-muted);
+  text-align: center;
+}
+
+.w75 { width: 75%; }
+.w79 { width: 79%; }
+.w81 { width: 81%; }
+.w92 { width: 92%; }
+.w100 { width: 100%; }
+
+/* Quarto/Pandoc fenced divs are rendered as wrappers containing <p> tags.
+   These rules keep component typography from collapsing back to the global
+   paragraph size. */
+.deck-label p,
+.deck-title p,
+.deck-subtitle p,
+.deck-footer p,
+.section-number p,
+.section-heading p,
+.section-subhead p,
+.kicker p,
+.subtitle p,
+.label p,
+.toc-num p,
+.toc-title p,
+.toc-desc p,
+.node > p,
+.node strong,
+.banner > p,
+.bar-label p,
+.metric p,
+.reveal td > p,
+.footer-note p {
+  font-size: inherit !important;
+  line-height: inherit;
+  margin: 0;
+}

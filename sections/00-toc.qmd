@@ -1,0 +1,88 @@
+## Contents
+
+::: {.kicker}
+Table of contents
+:::
+
+::: {.rule}
+:::
+
+:::: {.toc-grid}
+::: {.toc-item}
+::: {.toc-num}
+01
+:::
+::: {.toc-title}
+Overview and Requirements
+<br><br>
+:::
+::: {.toc-desc}
+Mission framing, throughput constraints, deadlines, and level terminology.
+:::
+:::
+
+::: {.toc-item}
+::: {.toc-num}
+02
+:::
+::: {.toc-title}
+Pipeline Architecture
+<br><br>
+:::
+::: {.toc-desc}
+How the framework is structured and what design assumptions it makes.
+:::
+:::
+
+::: {.toc-item}
+::: {.toc-num}
+03
+:::
+::: {.toc-title}
+L0 to L2 Calibration
+<br><br>
+:::
+::: {.toc-desc}
+What is still placeholder science, and where final algorithms must land.
+:::
+:::
+
+::: {.toc-item}
+::: {.toc-num}
+04
+:::
+::: {.toc-title}
+AWS vs Local
+<br><br>
+:::
+::: {.toc-desc}
+How to frame the deployment-location trade study at a decision level.
+:::
+:::
+
+::: {.toc-item}
+::: {.toc-num}
+05
+:::
+::: {.toc-title}
+L2 to L3
+<br><br>
+:::
+::: {.toc-desc}
+Open product-definition work and the boundary between framework and science.
+:::
+:::
+
+::: {.toc-item}
+::: {.toc-num}
+06
+:::
+::: {.toc-title}
+Questions
+<br><br>
+:::
+::: {.toc-desc}
+Open decisions, evidence gaps, and discussion points for the next pass.
+:::
+:::
+::::

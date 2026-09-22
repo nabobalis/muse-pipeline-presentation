@@ -1,0 +1,20 @@
+## {.title-slide}
+
+::: {.deck-label}
+FREIJ SOFTWARE INC.
+:::
+
+::: {.deck-title}
+MUSE Pipeline Overview
+:::
+
+::: {.accent-line}
+:::
+
+::: {.deck-subtitle}
+An overview of the current pipeline framework, remaining science work, L2 to L3 planning, and deployment.
+:::
+
+::: {.deck-footer}
+Presented by **Nabil Freij**
+:::

@@ -1,0 +1,51 @@
+## Questions {.section-slide}
+
+::: {.section-number}
+09
+:::
+
+::: {.section-heading}
+Questions
+:::
+
+::: {.accent-line}
+:::
+
+## Questions and next decisions
+
+::: {.kicker}
+Discussion
+:::
+
+::: {.rule}
+:::
+
+:::: {.grid-3}
+::: {.card .pale-blue}
+::: {.label .blue}
+Calibration
+<br><br>
+:::
+- Which calibration decisions need to be made first?
+  - Is a pipeline without it ok as long as its complete otherwise?
+:::
+
+::: {.card .pale-green}
+::: {.label .green}
+Deployment / cost
+<br><br>
+:::
+
+- What assumptions are still needed for AWS costing?
+- Will we do the L2 to L3 locally?
+:::
+
+::: {.card .pale-amber}
+::: {.label .amber}
+Questions?
+:::
+
+- What have I missed?
+- What do you want to ask?
+:::
+::::

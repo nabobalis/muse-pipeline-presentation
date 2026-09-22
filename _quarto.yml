@@ -1,0 +1,6 @@
+project:
+  type: default
+  output-dir: _site
+  pre-render: cost_model.py   # writes _variables.yml, read as {{< var cost.* >}}
+  render:
+    - slides.qmd

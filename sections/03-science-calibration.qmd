@@ -1,0 +1,106 @@
+## L0 Calibration {.section-slide}
+
+::: {.section-number}
+03
+:::
+
+::: {.section-heading}
+L0 to L2 Calibration
+:::
+
+::: {.accent-line}
+:::
+
+::: {.section-subhead}
+What is still missing
+:::
+
+## Framework complete missing real calibration
+
+::: {.kicker}
+L0 to L2 calibration
+:::
+
+::: {.rule}
+:::
+
+:::: {.grid-2}
+::: {.card .pale-green}
+::: {.label .green}
+Already valuable today
+:::
+
+- Nothing
+:::
+
+::: {.card .pale-amber}
+::: {.label .amber}
+Still incomplete
+:::
+
+- Approved calibration algorithms (darks, flats, geometric and wavelength calibrations)
+- Rules around how to handle bad frames
+- L1/L2 FITS details, provenance fields, and WCS
+:::
+::::
+
+::: {.banner .amber}
+Should I expect answers or code soon? If not, placeholder locations are separated in the pipeline, easy to fill in later
+:::
+
+## What is the remaining work?
+
+::: {.kicker}
+L0 to L2 calibration
+:::
+
+::: {.rule}
+:::
+
+:::: {.flow-row}
+::: {.node}
+**Validate frame**
+<br><br>
+Metadata and Data Quality
+:::
+::: {.arrow}
+->
+:::
+::: {.node .pale-blue}
+**Detector corrections**
+<br><br>
+Darks, Flats, Overscan, Cosmic ray, Saturation etc
+:::
+::: {.arrow}
+->
+:::
+::: {.node .pale-green}
+**Geometry + Wavelength calibration**
+<br><br>
+CI/SG calibration
+:::
+::: {.arrow}
+->
+:::
+::: {.node .pale-amber}
+**Alignment + WCS**
+<br><br>
+L1 WCS + L2 WCS (-Tab?)
+:::
+::: {.arrow}
+->
+:::
+::: {.node .pale-red}
+**metadata + provenance**
+<br><br>
+Extra keywords, validation of final output?
+:::
+::: {.arrow}
+->
+:::
+::: {.node .pale-red}
+**L2 collation**
+<br><br>
+Rules for missing/bad frames
+:::
+::::

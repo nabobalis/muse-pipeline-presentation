@@ -1,0 +1,167 @@
+## Pipeline Architecture {.section-slide}
+
+::: {.section-number}
+02
+:::
+
+::: {.section-heading}
+Pipeline Architecture
+:::
+
+::: {.accent-line}
+:::
+
+::: {.section-subhead}
+How the current framework is organized, and which assumptions are design anchors
+:::
+
+## Core processing architecture
+
+::: {.kicker}
+Pipeline architecture
+:::
+
+::: {.rule}
+:::
+
+:::: {.flow-row}
+::: {.node .pale-indigo}
+**Planning + L0 inbox**
+<br><br>
+Science timelines and FITS
+:::
+::: {.arrow}
+->
+:::
+::: {.node .pale-blue}
+**Intake + validation**
+<br><br>
+Register timeline plans, then validate L0
+:::
+::: {.arrow}
+->
+:::
+::: {.node .pale-cyan}
+**PostgreSQL state**
+<br><br>
+Claims, Retries, Products, Lineage
+:::
+::: {.arrow}
+->
+:::
+::: {.node .pale-green}
+**L1 workers**
+<br><br>
+Per-exposure processing
+:::
+::: {.arrow}
+->
+:::
+::: {.node .pale-green}
+**L2 processing**
+<br><br>
+Delivery of L0 closed (+12 hours after observation); All L1 processed successfully
+:::
+::: {.arrow}
+->
+:::
+::: {.node .pale-blue}
+**Published products**
+<br><br>
+Current L1/L2 outputs
+:::
+::::
+
+::: {.banner}
+Dagster is for operator control with launcher and maintenance schedules.
+It is does not act as the authoritative source for the processing
+:::
+
+## Authority boundaries
+
+::: {.kicker}
+Pipeline architecture
+:::
+
+::: {.rule}
+:::
+
+:::: {.grid-3}
+::: {.card .pale-blue}
+::: {.label .blue}
+Git
+:::
+
+- Source code for the pipeline
+- Source code for the science
+- Source code for the FITS keywords
+- Will contain all science and deployment configuration
+- Tests, CI, documentation, changelog and release
+:::
+
+::: {.card .pale-green}
+::: {.label .green}
+PostgreSQL
+:::
+
+- Workflow state
+- Claims, Leases, Retries
+- Observations and Product bookkeeping
+:::
+
+::: {.card .pale-cyan}
+::: {.label .cyan}
+Filesystem
+:::
+
+- Planning publications and L0 files
+- Staged and Published science products
+- Outputs are stored outside of the containers
+:::
+::::
+
+::: {.banner}
+The pipeline is fully containerized
+:::
+
+## Design Assumptions
+
+::: {.kicker}
+Pipeline architecture
+:::
+
+::: {.rule}
+:::
+
+:::: {.grid-2}
+::: {.card .pale-green}
+::: {.label .green}
+Assumptions currently made
+:::
+
+- Planning is published before its L0 files arrive=
+- Observation windows never overlap
+- L0 files arrive and are all accounted for, there are none lost in transit
+  - Pipeline checks the hashes are correct
+  - I assume the keywords in the FITs header will be able to tell us how many files we can expect?
+- L0 files are un-writeable by the pipeline
+- L0 files are N parallel, they don't need any information from other L0 files
+- L0 files can be processed as soon as they arrive, we don't need to wait for anything
+- Everything is "simple" - One database, individual workers, one orchestrator, html dashboard for database status
+  - This all split up, so can be deployed onto different machines (with some work)
+:::
+
+::: {.card .pale-red}
+::: {.label .red}
+Complexity to avoid without requirements
+:::
+
+- Complex dispatch systems like kubernetes
+  - Useful if we want to scale up or use multiple worker machines
+- Using the filesystem to scan and manage the state of the pipeline or file processing
+:::
+::::
+
+::: {.banner}
+Are they correct?
+:::

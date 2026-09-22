@@ -1,0 +1,164 @@
+## Overview and Requirements {.section-slide}
+
+::: {.section-number}
+01
+:::
+
+::: {.section-heading}
+Overview and Requirements
+:::
+
+::: {.accent-line}
+:::
+
+::: {.section-subhead}
+What the pipeline needs to deliver and on what cadence
+:::
+
+## Mission framing
+
+::: {.kicker}
+01 - Overview and requirements
+:::
+
+::: {.rule}
+:::
+
+:::: {.grid-3}
+::: {.card .pale-blue}
+::: {.label .blue}
+Incoming data
+:::
+
+- ~400 GB of L0 data per day
+- ~8 passes per day
+- ~50 GB every 3 hours
+:::
+
+::: {.card .pale-green}
+::: {.label .green}
+Operational products deadlines
+:::
+
+- L2 NRT target: ~24 hours
+- L2 target: ~1 week
+- L2.5 and L3 target: ~1 month
+:::
+
+::: {.card .pale-amber}
+::: {.label .amber}
+Program milestones
+:::
+
+- L0 to L1 beta by 12/2026
+- L2 / L2.5 alpha by 12/2026
+- L3 product definition by 12/2026
+:::
+::::
+
+::: {.banner}
+The goal is create a pipeline which can keep up with regular arrivals and meet all downstream product timelines
+:::
+
+## What this schedule implies
+
+::: {.kicker}
+01 - Overview and requirements
+:::
+
+::: {.rule}
+:::
+
+:::: {.grid-2}
+::: {}
+::: {.label .blue}
+Immediate implications
+:::
+
+- Each incoming L0 batch needs to be processed before the next batch arrives
+- The L0 to L2 path is the main focus to ensure we have enough throughput
+- "Placeholder" calibration used for framework and systems testing
+:::
+
+::: {}
+::: {.label .amber}
+Where uncertainty remains
+:::
+
+- L2.5 and L3 compute cost and time is still weakly constrained <br>
+  Heavy on-going development on the Torch solver(s)
+- Final L0 to L1 science algorithms will shift runtime and memory envelope
+- Host qualification still matters even if framework tests already look promising
+:::
+::::
+
+## Product levels at a glance
+
+::: {.kicker}
+01 - Overview and requirements
+:::
+
+::: {.rule}
+:::
+
+:::: {.flow-row}
+::: {.node}
+**L0**
+<br><br>
+Raw telemetry as FITS
+:::
+::: {.arrow}
+->
+:::
+::: {.node .pale-blue}
+**L0.5**
+<br><br>
+Temporary dark / flat staging (first-light)
+:::
+::: {.arrow}
+->
+:::
+::: {.node .pale-green}
+**L1**
+<br><br>
+Per-exposure calibrated outputs
+:::
+::: {.arrow}
+->
+:::
+::: {.node .pale-cyan}
+**L2**
+<br><br>
+OBS ID collated products
+:::
+::: {.arrow}
+->
+:::
+::: {.node .pale-amber}
+**L2.5**
+<br><br>
+SDC products
+:::
+::: {.arrow}
+->
+:::
+::: {.node .pale-red}
+**L3**
+<br><br>
+Derived science products
+:::
+::::
+
+:::: {.grid-2}
+::: {.banner .green}
+**Current focus**
+<br><br>
+L0 to L2 framework behavior and deployment
+:::
+
+::: {.banner .amber}
+**Future work**
+<br><br>
+L2.5 and L3 framework workflow, validation, and compute characterization.
+:::
+::::
