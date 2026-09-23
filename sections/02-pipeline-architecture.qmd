@@ -1,11 +1,11 @@
-## Pipeline Architecture {.section-slide}
+## Pipeline architecture {.section-slide .cyan}
 
 ::: {.section-number}
 02
 :::
 
 ::: {.section-heading}
-Pipeline Architecture
+Pipeline architecture
 :::
 
 ::: {.accent-line}
@@ -21,60 +21,57 @@ How the current framework is organized, and which assumptions are design anchors
 Pipeline architecture
 :::
 
-::: {.rule}
-:::
-
 :::: {.flow-row}
-::: {.node .pale-indigo}
+::: {.node .indigo}
 **Planning + L0 inbox**
-<br><br>
+
 Science timelines and FITS
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-blue}
+::: {.node .blue}
 **Intake + validation**
-<br><br>
+
 Register timeline plans, then validate L0
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-cyan}
+::: {.node .cyan}
 **PostgreSQL state**
-<br><br>
-Claims, Retries, Products, Lineage
+
+Claims, retries, products, lineage
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-green}
+::: {.node .green}
 **L1 workers**
-<br><br>
+
 Per-exposure processing
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-green}
+::: {.node .green}
 **L2 processing**
-<br><br>
-Delivery of L0 closed (+12 hours after observation); All L1 processed successfully
+
+L0 delivery closed (12 hours after observation); all L1 processed successfully
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-blue}
+::: {.node .blue}
 **Published products**
-<br><br>
+
 Current L1/L2 outputs
 :::
 ::::
 
 ::: {.banner}
 Dagster is for operator control with launcher and maintenance schedules.
-It is does not act as the authoritative source for the processing
+It does not hold the authoritative processing state
 :::
 
 ## Authority boundaries
@@ -83,12 +80,9 @@ It is does not act as the authoritative source for the processing
 Pipeline architecture
 :::
 
-::: {.rule}
-:::
-
 :::: {.grid-3}
-::: {.card .pale-blue}
-::: {.label .blue}
+::: {.card .blue}
+::: {.label}
 Git
 :::
 
@@ -99,23 +93,23 @@ Git
 - Tests, CI, documentation, changelog and release
 :::
 
-::: {.card .pale-green}
-::: {.label .green}
+::: {.card .green}
+::: {.label}
 PostgreSQL
 :::
 
 - Workflow state
-- Claims, Leases, Retries
-- Observations and Product bookkeeping
+- Claims, leases, retries
+- Observations and product bookkeeping
 :::
 
-::: {.card .pale-cyan}
-::: {.label .cyan}
+::: {.card .cyan}
+::: {.label}
 Filesystem
 :::
 
 - Planning publications and L0 files
-- Staged and Published science products
+- Staged and published science products
 - Outputs are stored outside of the containers
 :::
 ::::
@@ -124,39 +118,36 @@ Filesystem
 The pipeline is fully containerized
 :::
 
-## Design Assumptions
+## Design assumptions
 
 ::: {.kicker}
 Pipeline architecture
 :::
 
-::: {.rule}
-:::
-
 :::: {.grid-2}
-::: {.card .pale-green}
-::: {.label .green}
+::: {.card .green}
+::: {.label}
 Assumptions currently made
 :::
 
-- Planning is published before its L0 files arrive=
+- Planning is published before its L0 files arrive
 - Observation windows never overlap
-- L0 files arrive and are all accounted for, there are none lost in transit
-  - Pipeline checks the hashes are correct
-  - I assume the keywords in the FITs header will be able to tell us how many files we can expect?
-- L0 files are un-writeable by the pipeline
-- L0 files are N parallel, they don't need any information from other L0 files
-- L0 files can be processed as soon as they arrive, we don't need to wait for anything
-- Everything is "simple" - One database, individual workers, one orchestrator, html dashboard for database status
-  - This all split up, so can be deployed onto different machines (with some work)
+- All L0 files arrive and are accounted for; none are lost in transit
+  - The pipeline verifies the file hashes
+  - Can the FITS header keywords tell us how many files to expect?
+- L0 files are read-only to the pipeline
+- L0 files can be processed independently, without information from other L0 files
+- L0 processing can start as soon as each file arrives
+- One database, individual workers, one orchestrator, and an HTML dashboard for database status
+  - These components can be deployed on different machines with some work
 :::
 
-::: {.card .pale-red}
-::: {.label .red}
+::: {.card .red}
+::: {.label}
 Complexity to avoid without requirements
 :::
 
-- Complex dispatch systems like kubernetes
+- Complex dispatch systems like Kubernetes
   - Useful if we want to scale up or use multiple worker machines
 - Using the filesystem to scan and manage the state of the pipeline or file processing
 :::

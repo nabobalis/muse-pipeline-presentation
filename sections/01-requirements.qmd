@@ -1,11 +1,11 @@
-## Overview and Requirements {.section-slide}
+## Overview and requirements {.section-slide .blue}
 
 ::: {.section-number}
 01
 :::
 
 ::: {.section-heading}
-Overview and Requirements
+Overview and requirements
 :::
 
 ::: {.accent-line}
@@ -18,15 +18,12 @@ What the pipeline needs to deliver and on what cadence
 ## Mission framing
 
 ::: {.kicker}
-01 - Overview and requirements
-:::
-
-::: {.rule}
+Overview and requirements
 :::
 
 :::: {.grid-3}
-::: {.card .pale-blue}
-::: {.label .blue}
+::: {.card .blue}
+::: {.label}
 Incoming data
 :::
 
@@ -35,9 +32,9 @@ Incoming data
 - ~50 GB every 3 hours
 :::
 
-::: {.card .pale-green}
-::: {.label .green}
-Operational products deadlines
+::: {.card .green}
+::: {.label}
+Operational product deadlines
 :::
 
 - L2 NRT target: ~24 hours
@@ -45,49 +42,46 @@ Operational products deadlines
 - L2.5 and L3 target: ~1 month
 :::
 
-::: {.card .pale-amber}
-::: {.label .amber}
+::: {.card .amber}
+::: {.label}
 Program milestones
 :::
 
-- L0 to L1 beta by 12/2026
+- L0 → L1 beta by 12/2026
 - L2 / L2.5 alpha by 12/2026
 - L3 product definition by 12/2026
 :::
 ::::
 
 ::: {.banner}
-The goal is create a pipeline which can keep up with regular arrivals and meet all downstream product timelines
+The goal is to create a pipeline that can keep up with regular arrivals and meet all downstream product timelines
 :::
 
 ## What this schedule implies
 
 ::: {.kicker}
-01 - Overview and requirements
-:::
-
-::: {.rule}
+Overview and requirements
 :::
 
 :::: {.grid-2}
-::: {}
-::: {.label .blue}
+::: {.card .blue}
+::: {.label}
 Immediate implications
 :::
 
 - Each incoming L0 batch needs to be processed before the next batch arrives
-- The L0 to L2 path is the main focus to ensure we have enough throughput
+- The L0 → L2 path is the main focus to ensure we have enough throughput
 - "Placeholder" calibration used for framework and systems testing
 :::
 
-::: {}
-::: {.label .amber}
+::: {.card .amber}
+::: {.label}
 Where uncertainty remains
 :::
 
-- L2.5 and L3 compute cost and time is still weakly constrained <br>
-  Heavy on-going development on the Torch solver(s)
-- Final L0 to L1 science algorithms will shift runtime and memory envelope
+- L2.5 and L3 compute costs and runtimes are still uncertain
+  - Torch solvers are under active development
+- Final L0 → L1 science algorithms will change runtime and memory requirements
 - Host qualification still matters even if framework tests already look promising
 :::
 ::::
@@ -95,56 +89,53 @@ Where uncertainty remains
 ## Product levels at a glance
 
 ::: {.kicker}
-01 - Overview and requirements
-:::
-
-::: {.rule}
+Overview and requirements
 :::
 
 :::: {.flow-row}
 ::: {.node}
 **L0**
-<br><br>
+
 Raw telemetry as FITS
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-blue}
+::: {.node .blue}
 **L0.5**
-<br><br>
+
 Temporary dark / flat staging (first-light)
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-green}
+::: {.node .green}
 **L1**
-<br><br>
+
 Per-exposure calibrated outputs
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-cyan}
+::: {.node .cyan}
 **L2**
-<br><br>
+
 OBS ID collated products
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-amber}
+::: {.node .amber}
 **L2.5**
-<br><br>
+
 SDC products
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-red}
+::: {.node .red}
 **L3**
-<br><br>
+
 Derived science products
 :::
 ::::
@@ -152,13 +143,13 @@ Derived science products
 :::: {.grid-2}
 ::: {.banner .green}
 **Current focus**
-<br><br>
-L0 to L2 framework behavior and deployment
+
+L0 → L2 framework behavior and deployment
 :::
 
 ::: {.banner .amber}
 **Future work**
-<br><br>
+
 L2.5 and L3 framework workflow, validation, and compute characterization.
 :::
 ::::

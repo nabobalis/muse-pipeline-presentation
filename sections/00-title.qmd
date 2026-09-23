@@ -12,7 +12,7 @@ MUSE Pipeline Overview
 :::
 
 ::: {.deck-subtitle}
-An overview of the current pipeline framework, remaining science work, L2 to L3 planning, and deployment.
+An overview of the current pipeline framework, remaining science work, L2 → L3 planning, and deployment.
 :::
 
 ::: {.deck-footer}

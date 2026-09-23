@@ -14,8 +14,6 @@ format:
     slide-number: true
     hash: true
     incremental: false
-execute:
-  echo: false
 ---
 
 {{< include sections/00-title.qmd >}}

@@ -1,11 +1,11 @@
-## L0 Calibration {.section-slide}
+## L0 → L2 calibration {.section-slide .green}
 
 ::: {.section-number}
 03
 :::
 
 ::: {.section-heading}
-L0 to L2 Calibration
+L0 → L2 calibration
 :::
 
 ::: {.accent-line}
@@ -15,26 +15,23 @@ L0 to L2 Calibration
 What is still missing
 :::
 
-## Framework complete missing real calibration
+## Framework complete; real calibration still missing
 
 ::: {.kicker}
-L0 to L2 calibration
-:::
-
-::: {.rule}
+L0 → L2 calibration
 :::
 
 :::: {.grid-2}
-::: {.card .pale-green}
-::: {.label .green}
+::: {.card .green}
+::: {.label}
 Already valuable today
 :::
 
 - Nothing
 :::
 
-::: {.card .pale-amber}
-::: {.label .amber}
+::: {.card .amber}
+::: {.label}
 Still incomplete
 :::
 
@@ -51,56 +48,53 @@ Should I expect answers or code soon? If not, placeholder locations are separate
 ## What is the remaining work?
 
 ::: {.kicker}
-L0 to L2 calibration
-:::
-
-::: {.rule}
+L0 → L2 calibration
 :::
 
 :::: {.flow-row}
 ::: {.node}
 **Validate frame**
-<br><br>
-Metadata and Data Quality
+
+Metadata and data quality
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-blue}
+::: {.node .blue}
 **Detector corrections**
-<br><br>
-Darks, Flats, Overscan, Cosmic ray, Saturation etc
+
+Darks, flats, overscan, cosmic rays, saturation, etc.
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-green}
-**Geometry + Wavelength calibration**
-<br><br>
+::: {.node .green}
+**Geometry + wavelength calibration**
+
 CI/SG calibration
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-amber}
+::: {.node .amber}
 **Alignment + WCS**
-<br><br>
+
 L1 WCS + L2 WCS (-Tab?)
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-red}
-**metadata + provenance**
-<br><br>
+::: {.node .red}
+**Metadata + provenance**
+
 Extra keywords, validation of final output?
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-red}
+::: {.node .red}
 **L2 collation**
-<br><br>
+
 Rules for missing/bad frames
 :::
 ::::

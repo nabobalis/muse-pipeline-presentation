@@ -1,11 +1,11 @@
-## AWS vs Local {.section-slide}
+## AWS vs local {.section-slide .amber}
 
 ::: {.section-number}
 04
 :::
 
 ::: {.section-heading}
-AWS vs Local
+AWS vs local
 :::
 
 ::: {.accent-line}
@@ -21,12 +21,9 @@ All very early results
 AWS vs local
 :::
 
-::: {.rule}
-:::
-
 :::: {.grid-2}
-::: {.card .pale-green}
-::: {.label .green}
+::: {.card .green}
+::: {.label}
 Local strengths
 :::
 
@@ -36,8 +33,8 @@ Local strengths
 - Lower recurring cost if utilization stays steady
 :::
 
-::: {.card .pale-blue}
-::: {.label .blue}
+::: {.card .blue}
+::: {.label}
 AWS strengths
 :::
 
@@ -49,18 +46,14 @@ AWS strengths
 :::
 ::::
 
-
 ::: {.banner}
 PUNCH did not have any numbers (lost in email transition) but said as soon as you worked out the egress cost, it was the bulk of the cost
 :::
 
-## Paper Estimates - L0 to L2 + Storage
+## Paper estimates: L0 → L2 + storage
 
 ::: {.kicker}
 AWS vs local
-:::
-
-::: {.rule}
 :::
 
 ::::: {.bar-row}
@@ -131,8 +124,8 @@ EC2 disk, 1 TiB
 **Total {{< var cost.day_total >}} a day.** N. California would be {{< var cost.day_nc >}}; a single-zone database saves ~ {{< var cost.day_saz >}}.
 
 :::: {.grid-2 .compact}
-::: {.card}
-::: {.label .blue}
+::: {.card .blue}
+::: {.label}
 Data and pricing
 :::
 
@@ -144,15 +137,15 @@ Data and pricing
 - L3 about {{< var cost.l3_gib >}} GiB (one merged file, measured on a simulated flare), uploaded back to S3 (free); the L3 machine is not priced
 :::
 
-::: {.card}
-::: {.label .amber}
+::: {.card .amber}
+::: {.label}
 Per line item
 :::
 
 - EC2: one `m7i.2xlarge` at {{< var cost.ec2_rate >}}/h, Dagster on the same host, 8 vCPUs (Intel's 4th Generation Xeon - Sapphire Rapids) and 32 GiB of memory
 - RDS: `db.m7g.large` Multi-AZ at {{< var cost.rds_rate >}}/h, plus 100 GiB of gp3
 - EC2 disk: 1 TiB of gp3 (132 GiB root, Docker and logs + ~890 GiB of files in progress); L1 is temporary, local files deleted once L2 is in S3
-- Last bar: one day of L0, L2 and L3 in S3 Standard ({{< var cost.day_s3 >}}), {{< var cost.day_puts >}} PUTs + {{< var cost.day_gets >}} GETs ({{< var cost.day_req >}}), NAT + one public IPv4 ({{< var cost.day_nat >}}), database and disk backups ({{< var cost.day_backups >}}), logs and secrets ({{< var cost.day_logs >}})
+- S3, requests, network, and logs bar: one day of L0, L2 and L3 in S3 Standard ({{< var cost.day_s3 >}}), {{< var cost.day_puts >}} PUTs + {{< var cost.day_gets >}} GETs ({{< var cost.day_req >}}), NAT + one public IPv4 ({{< var cost.day_nat >}}), database and disk backups ({{< var cost.day_backups >}}), logs and secrets ({{< var cost.day_logs >}})
 - Not included: CloudWatch, LIST/retry/KMS requests, cross-Region copies, extra downloads; storage tiers; egress to NASA/SDAC
 :::
 ::::
@@ -161,9 +154,6 @@ Per line item
 
 ::: {.kicker}
 AWS vs local
-:::
-
-::: {.rule}
 :::
 
 |                                          |           Low |          High | What decides it                                          |
@@ -187,9 +177,6 @@ AWS vs local
 AWS vs local
 :::
 
-::: {.rule}
-:::
-
 | Leaving AWS every day                  | Per month     | Cost per month |
 | ------------------------------------   | --------:     | -------------: |
 | L2 once, for L3 done elsewhere         | {{< var cost.eg_l2_tib >}} | {{< var cost.eg_l2 >}} |
@@ -210,12 +197,9 @@ Every extra full download of a level adds about {{< var cost.eg_extra >}} a mont
 AWS vs local
 :::
 
-::: {.rule}
-:::
-
 :::: {.grid-2}
-::: {.card .pale-blue }
-::: {.label .blue}
+::: {.card .blue}
+::: {.label}
 S3: where data is kept
 :::
 
@@ -225,8 +209,8 @@ S3: where data is kept
 - **L2 + L3:** 90 days is about {{< var cost.l23_90d >}} a month; keeping them for the mission in Glacier Instant Retrieval adds about {{< var cost.l23_growth >}} a month per year
 :::
 
-::: {.card .pale-amber }
-::: {.label .amber}
+::: {.card .amber}
+::: {.label}
 EC2 disk: where the pipeline works
 :::
 
@@ -246,9 +230,6 @@ After year 1, S3 costs {{< var cost.s3_y1 >}} a month and grows by {{< var cost.
 AWS vs local
 :::
 
-::: {.rule}
-:::
-
 | Two GPUs                          | Per hour | 8 h a day, per month | 24 h a day, per month |
 | --------------------------------- | -------: | -------------------: | --------------------: |
 | 2× T4 16 GB | {{< var cost.gpu_t4 >}} | {{< var cost.gpu_t4_8 >}} | {{< var cost.gpu_t4_24 >}} |
@@ -263,8 +244,8 @@ AWS vs local
 :::
 
 :::: {.grid-2}
-::: {.card .pale-green }
-::: {.label .green}
+::: {.card .green}
+::: {.label}
 What it saves
 :::
 
@@ -273,8 +254,8 @@ What it saves
 - Or the chosen `g5.4xlarge` pair for about {{< var cost.l3_gpu_hours >}} hours a day
 :::
 
-::: {.card .pale-amber }
-::: {.label .amber}
+::: {.card .amber}
+::: {.label}
 What it doesn't
 :::
 
@@ -288,9 +269,6 @@ What it doesn't
 
 ::: {.kicker}
 AWS vs local
-:::
-
-::: {.rule}
 :::
 
 | Per month, Oregon                                          |  Now |     After | Catch                                                        |
@@ -312,9 +290,6 @@ Ranges: 8 vCPUs scaling perfectly, to 2 workers only (12 h a day, unmeasured on 
 AWS vs local
 :::
 
-::: {.rule}
-:::
-
 | Per month, end of year 1                          | Saves             | Catch                                                          |
 | ------------------------------------------------- | ----------------: | -------------------------------------------------------------- |
 | L0 older than 30 days in Glacier Deep Archive     | {{< var cost.sv_deep >}} | Restores take up to 48 hours and cost {{< var cost.restore_day >}} per day of L0; each extra year adds {{< var cost.l0_growth_deep >}} instead of {{< var cost.l0_growth >}} |
@@ -323,16 +298,13 @@ AWS vs local
 | Compress L0, L2 and L3 (compression in some form)    | unknown           | Cuts storage and egress; needs measuring on real files         |
 
 ::: {.banner .green}
-These three need no pipeline redesign: about {{< var cost.sv_store3 >}} a month at year 1, growing each year
+The first three storage changes could save about {{< var cost.sv_store3 >}} a month at year 1, growing each year
 :::
 
 ## Saving on egress and L3
 
 ::: {.kicker}
 AWS vs local
-:::
-
-::: {.rule}
 :::
 
 | Per month, end of year 1                                   | Saves           | Catch                                                           |
@@ -345,8 +317,9 @@ AWS vs local
 | AWS research egress waiver                                 | Up to 15%       | Ask AWS whether SETI qualifies                                  |
 
 ::: {.banner .amber}
-L3 is due in about a month, so it can run in weekly or monthly batches. <br> <br>
-No redesign: {{< var cost.now_range >}} becomes {{< var cost.after_lo >}}-{{< var cost.after_hi >}} a month. Data delivered inside AWS: high end {{< var cost.after_data_hi >}}
+L3 is due in about a month, so it can run in weekly or monthly batches.
+
+After the proposed changes: {{< var cost.now_range >}} becomes {{< var cost.after_lo >}}-{{< var cost.after_hi >}} a month. Data delivered inside AWS: high end {{< var cost.after_data_hi >}}
 :::
 
 ## Assumptions to confirm
@@ -355,12 +328,9 @@ No redesign: {{< var cost.now_range >}} becomes {{< var cost.after_lo >}}-{{< va
 AWS vs local
 :::
 
-::: {.rule}
-:::
-
 :::: {.grid-2}
-::: {.card }
-::: {.label .blue}
+::: {.card .blue}
+::: {.label}
 Science and operations
 :::
 
@@ -370,8 +340,8 @@ Science and operations
 - Which L3 planes are published: one merged file is ~{{< var cost.l3_gib >}} GiB a day
 :::
 
-::: {.card }
-::: {.label .amber}
+::: {.card .amber}
+::: {.label}
 Engineering and money
 :::
 
@@ -388,39 +358,36 @@ All numbers are AWS list prices from its price files (16-22 September 2026), for
 ## AWS deployment shape
 
 ::: {.kicker}
-AWS vs Local
-:::
-
-::: {.rule}
+AWS vs local
 :::
 
 :::: {.grid-4}
-::: {.card .pale-blue }
-::: {.label .blue}
+::: {.card .blue}
+::: {.label}
 Compute
 :::
 
 EC2 / Batch / ECS workers for daily processing and reprocessing bursts
 :::
 
-::: {.card .pale-green }
-::: {.label .green}
+::: {.card .green}
+::: {.label}
 Database
 :::
 
 RDS PostgreSQL or self-managed PostgreSQL
 :::
 
-::: {.card .pale-amber }
-::: {.label .amber}
+::: {.card .amber}
+::: {.label}
 Storage
 :::
 
 EBS / EFS / FSx / S3
 :::
 
-::: {.card .pale-red }
-::: {.label .red}
+::: {.card .red}
+::: {.label}
 Network / archive
 :::
 

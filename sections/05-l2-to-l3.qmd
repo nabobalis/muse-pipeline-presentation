@@ -1,11 +1,11 @@
-## L2 to L3 {.section-slide}
+## L2 → L3 {.section-slide .indigo}
 
 ::: {.section-number}
 05
 :::
 
 ::: {.section-heading}
-L2 to L3
+L2 → L3
 :::
 
 ::: {.accent-line}
@@ -15,23 +15,20 @@ L2 to L3
 The big beautiful elephant
 :::
 
-## Rough Workflow - Not everything
+## Outline workflow
 
 ::: {.kicker}
-L2 to L3
+L2 → L3
 :::
 
-::: {.rule}
-:::
-
-:::: {.flow-row }
-::: {.node .pale-green}
+:::: {.flow-row}
+::: {.node .green}
 **Level 2**
 
 Three SG channels + CI
 :::
 ::: {.arrow}
-->
+→
 :::
 ::: {.node}
 **Screen rows**
@@ -39,23 +36,23 @@ Three SG channels + CI
 Skip rows with no signal
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-blue}
+::: {.node .blue}
 **GFAT + filter**
 
 Level 3A
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-blue}
+::: {.node .blue}
 **SVD branch**
 
 Level 3B
 :::
 ::: {.arrow}
-->
+→
 :::
 ::: {.node}
 **Compare**
@@ -64,92 +61,88 @@ GOOD / OK / BAD
 :::
 ::::
 
-:::: {.flow-row }
+:::: {.flow-row}
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-amber}
+::: {.node .amber}
 **Trigger**
 
 Which rows go to SDC
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-blue}
+::: {.node .blue}
 **SDC branch**
 
-Level 3C
+Level 2.5
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-amber}
+::: {.node .amber}
 **Merge**
 
 Which result each pixel keeps
 :::
 ::: {.arrow}
-->
+→
 :::
-::: {.node .pale-red}
+::: {.node .red}
 **Level 3**
 
 Moments + QUALITY + HF_FLAGS
 :::
 ::::
 
-::: {.card .center .pale-red}
-::: {.label .black}
-Heuristic Filtering
-<br><br>
+::: {.card .center .red}
+::: {.label}
+Heuristic filtering
 :::
-Changes what gets sent to which stage - Not captured here
+Changes which rows reach each stage; not shown in this outline
 :::
 
 ::: {.banner .amber}
-Nothing is in the pipeline yet, exists in muse in some form
+This workflow is not in the pipeline yet; parts exist in the muse library
 :::
 
 ## What has to be decided and built
 
 ::: {.kicker}
-L2 to L3
-:::
-
-::: {.rule}
+L2 → L3
 :::
 
 :::: {.grid-3}
-::: {.card }
-::: {.label .blue}
+::: {.card .blue}
+::: {.label}
 Decisions to be made
 :::
 
 - Versioned response calibrations
-- How/does AIA arrive?
-- L3A / 3B / 3C as separate products, or planes in one file?
+- Will AIA data arrive, and how?
+- L3A / L3B / L2.5 as separate products, or HDUs in one file?
 :::
 
-::: {.card }
-::: {.label .amber}
+::: {.card .amber}
+::: {.label}
 muse library work first
 :::
 
 - Make the filter callable by the pipeline: a method registry, and "not run" instead of exceptions for missing inputs
   - This is a major refactor
 - Configuration instead of hard-coded values
-  - Pipeline needs to be able to hardcode these
+  - The pipeline must pin the chosen configuration
 :::
 
-::: {.card }
-::: {.label .green}
+::: {.card .green}
+::: {.label}
 Pipeline work after that
 :::
 
 - Level 3 science module, plus reading Level 2 and publishing Level 3
-- Level 3 science config
+- Level 3 science configuration
 - Final test: match the benchmark output to machine precision
-- Freeze the agreed L2 to L3 into one fixed sequence
+- Freeze the agreed L2 → L3 into one fixed sequence
 :::
 ::::

@@ -23,7 +23,7 @@ L1 = L0 * 75_052_800 / 73_987_200                    # measured L1/L0 on the 20-
 L2 = L0 * 74_836_800 / 73_987_200                    # measured L2/L0
 # L3: one merged file per SG observation, float32 moments + errors + uint8/uint16 flags, lossless
 # GZIP_2. Measured on the baseline_gpu run (synthetic M-flare): 0.34x L2 per SG exposure,
-# compressed to 0.79x. Range 40-45 (low-signal pixels blanked) .. 370-570 (3A/3B/3C all published);
+# compressed to 0.79x. Range 40-45 (low-signal pixels blanked) .. 370-570 (L3A/L3B/L2.5 all published);
 # the VDEM cube, if published, adds 530-680 GiB/day.
 L3 = 124.0
 
