@@ -280,9 +280,8 @@ AWS vs local
 | Database: single-zone `db.t4g.medium`                      | {{< var cost.sv_rds_now >}} | **{{< var cost.sv_rds >}}** | A 24-hour deadline can absorb an hour of downtime            |
 | Drop the NAT gateway                                       | {{< var cost.sv_nat_now >}} | **{{< var cost.sv_nat >}}** | Public subnet, security groups, free S3 gateway endpoint     |
 
-::: {.footer-note}
-Ranges: 8 vCPUs scaling perfectly, to 2 workers only (12 h a day, unmeasured on AWS). Assumes AWS cores are {{< var cost.slowdown >}} slower than the benchmark desktop. Spot is AWS's typical saving ({{< var cost.spot_pct >}}) on 23 September 2026.
-:::
+Ranges: 8 vCPUs scaling perfectly, to 2 workers only (12 h a day, unmeasured on AWS). Assumes AWS cores are {{< var cost.slowdown >}} slower than the benchmark desktop.
+Spot is AWS's typical saving ({{< var cost.spot_pct >}}) on 23 September 2026.
 
 ## Saving on storage
 
