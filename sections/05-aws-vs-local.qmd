@@ -12,7 +12,7 @@ AWS vs local
 :::
 
 ::: {.section-subhead}
-Estimsates - Real AWS testing is still WIP
+Estimates - Real AWS testing is still WIP
 :::
 
 ## Framing the choice

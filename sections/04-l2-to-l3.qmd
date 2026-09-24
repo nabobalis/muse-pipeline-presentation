@@ -119,7 +119,7 @@ L2 → L3
 Decisions to be made
 :::
 
-- Versioned response calibrations
+- Versioned response functions
 - Will AIA data arrive, and how?
 - L3A / L3B / L2.5 as separate products, or HDUs in one file?
 :::
