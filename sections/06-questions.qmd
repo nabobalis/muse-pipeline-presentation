@@ -24,6 +24,8 @@ Calibration
 :::
 - Which calibration decisions need to be made first?
   - Is a pipeline without calibration acceptable if it's otherwise complete?
+- What the functional difference between NRT and non-NRT data?
+- Dark + Flats → Models? Files? Updated often?
 :::
 
 ::: {.card .green}
@@ -33,8 +35,6 @@ Deployment / cost
 
 - What assumptions are still needed for AWS costing?
 - Will we process L2 → L3 locally?
-- What the functional difference between NRT and non-NRT data?
-- Dark + Flats → Models? Files? Updated often?
 :::
 
 ::: {.card .amber}
