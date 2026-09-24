@@ -15,7 +15,7 @@ L0 → L2 calibration
 What is still missing
 :::
 
-## Framework complete; real calibration still missing
+## Framework complete*; real calibration still missing
 
 ::: {.kicker}
 L0 → L2 calibration
@@ -26,8 +26,6 @@ L0 → L2 calibration
 ::: {.label}
 What works now
 :::
-
-
 - Nothing
 :::
 
@@ -44,6 +42,12 @@ Still incomplete
 
 ::: {.banner .amber}
 Should I expect answers or code soon? If not, the placeholders are isolated in the pipeline and easy to fill in later
+:::
+
+::: {.banner .blue}
+* Benchmarks to ensure it isn't bottle necked by its own design
+* Media outputs not there
+* L2 to L3 not there
 :::
 
 ## What is the remaining work?
