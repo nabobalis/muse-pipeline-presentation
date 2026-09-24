@@ -314,7 +314,7 @@
   font-weight: 700;
 }
 
-/* Numbers (right-aligned cells) never wrap, e.g. $77–201. */
+/* Numbers (right-aligned cells) never wrap, e.g. $77-201. */
 .reveal table td[style*="right"] { white-space: nowrap; }
 
 .compact p, .compact li { font-size: 16px !important; }
@@ -328,9 +328,11 @@
   text-align: center;
 }
 
-/* Quarto/Pandoc fenced divs are rendered as wrappers containing <p> tags.
-   These rules keep component typography from collapsing back to the global
-   paragraph size. */
+/*
+  Quarto/Pandoc fenced divs are rendered as wrappers containing <p> tags.
+  These rules keep component typography from collapsing back to the global
+  paragraph size.
+*/
 .deck-label p,
 .deck-title p,
 .deck-subtitle p,
@@ -355,3 +357,6 @@
   line-height: inherit;
   margin: 0;
 }
+
+/* Headline number on a stat card. */
+.card .metric { font-size: 40px !important; line-height: 1.1; margin-bottom: 6px; }
