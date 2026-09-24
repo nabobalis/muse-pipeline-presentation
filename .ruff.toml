@@ -1,0 +1,37 @@
+# Allow unused variables when underscore-prefixed.
+lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+target-version = "py312"
+line-length = 120
+extend-exclude = [
+  ".git",
+  "__pycache__",
+  "build",
+  "tools/**",
+]
+lint.extend-select = [
+  "ALL",
+]
+lint.ignore = [
+  "ANN",
+  "C901",
+  "COM812",
+  "CPY001",
+  "D",
+  "FBT",
+  "PLR",
+  "PTH123",
+  "S603",
+  "S607",
+  "T20",
+]
+[lint.pydocstyle]
+convention = "numpy"
+
+[format]
+docstring-code-format = true
+docstring-code-line-length = 80
+indent-style = "space"
+quote-style = "double"
+
+[lint.isort]
+default-section = "third-party"

@@ -12,7 +12,7 @@ Pipeline architecture
 :::
 
 ::: {.section-subhead}
-How the current framework is organized, and which assumptions are design anchors
+How the current framework is organized, and which assumptions it depends on
 :::
 
 ## Core processing architecture
@@ -74,7 +74,7 @@ Dagster is for operator control with launcher and maintenance schedules.
 It does not hold the authoritative processing state
 :::
 
-## Authority boundaries
+## Where things live
 
 ::: {.kicker}
 Pipeline architecture
@@ -86,11 +86,9 @@ Pipeline architecture
 Git
 :::
 
-- Source code for the pipeline
-- Source code for the science
-- Source code for the FITS keywords
+- Source code for the pipeline, the science and the FITS keywords
 - Will contain all science and deployment configuration
-- Tests, CI, documentation, changelog and release
+- Tests, CI, documentation, changelog and releases
 :::
 
 ::: {.card .green}
@@ -108,9 +106,9 @@ PostgreSQL
 Filesystem
 :::
 
-- Planning publications and L0 files
+- Published plans and L0 files
 - Staged and published science products
-- Outputs are stored outside of the containers
+- Outputs are stored outside the containers
 :::
 ::::
 
@@ -138,18 +136,18 @@ Assumptions currently made
 - L0 files are read-only to the pipeline
 - L0 files can be processed independently, without information from other L0 files
 - L0 processing can start as soon as each file arrives
-- One database, individual workers, one orchestrator, and an HTML dashboard for database status
+- One database, individual workers, one orchestrator and an HTML dashboard for database status
   - These components can be deployed on different machines with some work
 :::
 
 ::: {.card .red}
 ::: {.label}
-Complexity to avoid without requirements
+Not built unless a requirement appears
 :::
 
 - Complex dispatch systems like Kubernetes
   - Useful if we want to scale up or use multiple worker machines
-- Using the filesystem to scan and manage the state of the pipeline or file processing
+- Scanning the filesystem to track pipeline state
 :::
 ::::
 

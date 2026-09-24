@@ -24,8 +24,9 @@ L0 → L2 calibration
 :::: {.grid-2}
 ::: {.card .green}
 ::: {.label}
-Already valuable today
+What works now
 :::
+
 
 - Nothing
 :::
@@ -35,14 +36,14 @@ Already valuable today
 Still incomplete
 :::
 
-- Approved calibration algorithms (darks, flats, geometric and wavelength calibrations)
+- Approved calibration algorithms (darks, flats, geometry, wavelength, etc)
 - Rules around how to handle bad frames
 - L1/L2 FITS details, provenance fields, and WCS
 :::
 ::::
 
 ::: {.banner .amber}
-Should I expect answers or code soon? If not, placeholder locations are separated in the pipeline, easy to fill in later
+Should I expect answers or code soon? If not, the placeholders are isolated in the pipeline and easy to fill in later
 :::
 
 ## What is the remaining work?
@@ -79,7 +80,7 @@ CI/SG calibration
 ::: {.node .amber}
 **Alignment + WCS**
 
-L1 WCS + L2 WCS (-Tab?)
+L1 WCS + L2 WCS (-TAB?)
 :::
 ::: {.arrow}
 →

@@ -1,8 +1,8 @@
 """
-Preview the deck and rebuild it when an included section changes
+Preview the deck and rebuild it when an included section changes.
 
-This works around a Quarto preview issue: https://github.com/quarto-dev/quarto-cli/issues/2795
-
+This works around a Quarto preview issue:
+https://github.com/quarto-dev/quarto-cli/issues/2795
 """
 
 import os

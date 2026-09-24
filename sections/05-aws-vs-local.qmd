@@ -1,0 +1,379 @@
+## AWS vs local {.section-slide .amber}
+
+::: {.section-number}
+05
+:::
+
+::: {.section-heading}
+AWS vs local
+:::
+
+::: {.accent-line}
+:::
+
+::: {.section-subhead}
+Estimsates - Real AWS testing is still WIP
+:::
+
+## Framing the choice
+
+::: {.kicker}
+AWS vs local
+:::
+
+:::: {.grid-2}
+::: {.card .green}
+::: {.label}
+Local strengths
+:::
+
+- Closest match to the current framework
+- We do this already for IRIS
+- We can optimize for the hardware we have
+- Lower recurring cost if utilization stays steady
+:::
+
+::: {.card .blue}
+::: {.label}
+AWS strengths
+:::
+
+- Can scale up for reprocessing
+- AWS runs the database and storage; off-site copies are easy
+  - "Less" IT work
+- Pay-for-use "can" make the bill predictable
+- Possible path for larger-scale L3 or campaign reprocessing
+:::
+::::
+
+::: {.banner}
+PUNCH did not have any numbers (lost in an email migration) but said once they worked out egress, it was most of the bill
+:::
+
+## Paper estimates: L0 → L2 + storage
+
+::: {.kicker}
+AWS vs local
+:::
+
+::::: {.bar-row}
+::: {.bar-label}
+L2 download (egress to local machine for L3)
+:::
+:::: {.bar-bg}
+::: {.bar-fill .amber style="width: 100%"}
+:::
+::::
+::: {.metric}
+{{< var cost.day_l2 >}}
+:::
+:::::
+
+::::: {.bar-row}
+::: {.bar-label}
+EC2 `m7i.2xlarge`, 24 h
+:::
+:::: {.bar-bg}
+::: {.bar-fill style="width: {{< var cost.w_ec2 >}}"}
+:::
+::::
+::: {.metric}
+{{< var cost.day_ec2 >}}
+:::
+:::::
+
+::::: {.bar-row}
+::: {.bar-label}
+PostgreSQL (RDS, Single-AZ)
+:::
+:::: {.bar-bg}
+::: {.bar-fill style="width: {{< var cost.w_rds >}}"}
+:::
+::::
+::: {.metric}
+{{< var cost.day_rds >}}
+:::
+:::::
+
+::::: {.bar-row}
+::: {.bar-label}
+S3, requests, network, logs
+:::
+:::: {.bar-bg}
+::: {.bar-fill .green style="width: {{< var cost.w_rest >}}"}
+:::
+::::
+::: {.metric}
+{{< var cost.day_rest >}}
+:::
+:::::
+
+::::: {.bar-row}
+::: {.bar-label}
+EC2 disk, proposed 1 TiB
+:::
+:::: {.bar-bg}
+::: {.bar-fill style="width: {{< var cost.w_ebs >}}"}
+:::
+::::
+::: {.metric}
+{{< var cost.day_ebs >}}
+:::
+:::::
+
+**{{< var cost.day_total >}} a day.** N. California would be {{< var cost.day_nc >}}
+
+:::: {.grid-2 .compact}
+::: {.card .blue}
+::: {.label}
+Data and pricing
+:::
+
+- Oregon On-Demand prices checked 23 Sep 2026; tax and support excluded
+- 389 GB ({{< var cost.l0_gib >}} GiB) of L0; L1 {{< var cost.l1_gib >}} GiB and L2 {{< var cost.l2_gib >}} GiB from local benchmark size ratios
+- About {{< var cost.l0_files >}} L0 files (~2-3 MB each)
+- Storage is the monthly price ÷ 30; compute runs the full 24 h
+- L2 downloaded once, straight from S3, at $0.09/GB; the free 100 GB assumed used up (else $9 less)
+- L1 omitted from S3
+:::
+
+::: {.card .amber}
+::: {.label}
+Per line item
+:::
+
+- EC2: one `m7i.2xlarge` at {{< var cost.ec2_rate >}}/h, Dagster on the same host, 8 vCPUs (4th Gen Xeon, Sapphire Rapids) and 32 GiB of memory
+- RDS: `db.m7g.large` Single-AZ at {{< var cost.rds_rate >}}/h, plus 100 GiB of gp3
+- Disk: proposed 1 TiB, including 132 GiB system/state. Requires verified upload, eviction and restore; current code keeps every file
+- S3, requests, network and logs bar: one day of L0, L2 and L3 in S3 Standard ({{< var cost.day_s3 >}}), {{< var cost.day_puts >}} PUTs + {{< var cost.day_gets >}} GETs ({{< var cost.day_req >}}), NAT + one public IPv4 ({{< var cost.day_nat >}}), database and disk backups ({{< var cost.day_backups >}}), logs and secrets ({{< var cost.day_logs >}})
+- Logs/CloudWatch and secrets are allowances. Extra requests, cross-AZ/Region traffic and further downloads are unmeasured
+:::
+::::
+
+## Monthly cost at year 1 : L0 → L2 + storage
+
+::: {.kicker}
+AWS vs local
+:::
+
+|                                          |           Low |          High | What decides it                                          |
+| ---------------------------------------- | ------------: | ------------: | -------------------------------------------------------- |
+| Always on: EC2, RDS, NAT, requests, backups, logs | {{< var cost.m_always >}} | {{< var cost.m_always >}} | Instance sizes; agreed Single-AZ database |
+| EC2 disk, proposed 1 TiB                  | {{< var cost.m_ebs >}} | {{< var cost.m_ebs >}} | Pipeline must delete local files after upload (not built) |
+| S3 storage                               | {{< var cost.m_s3_lo >}} | {{< var cost.m_s3_hi >}} | Whether L2 and L3 are kept after 90 days |
+| Egress (data leaving AWS)                | {{< var cost.m_eg_lo >}} | {{< var cost.m_eg_hi >}} | What is downloaded, and how often |
+| **Total per month**                      | **{{< var cost.m_lo >}}** | **{{< var cost.m_hi >}}** | |
+
+- **S3 storage grows with the mission:** one day of L0, L2 and L3 costs {{< var cost.day_s3 >}} to store.
+  At year 1: L0 is 30 days in Standard plus 335 in Glacier; L2/L3 are 90 days in Standard, with older data optionally in Glacier Instant Retrieval. Metadata and transitions are included.
+  Moving about {{< var cost.l0_files >}} L0 files a day into Glacier adds {{< var cost.m_l0_moves >}} a month
+- **Egress depends on who downloads what:** the low end ({{< var cost.m_eg_lo >}}) is 30 daily L2 downloads, a little cheaper because the first 100 GB a month are free.
+  The high case adds optional L0/NASA copies and user downloads at {{< var cost.share_hi >}} of new monthly L2/L3 bytes
+- **Calendar convention:** 30 daily batches and 720 hours. AWS bills actual usage; 730 hours is an annual-average planning convention
+
+## What could leave AWS each month
+
+::: {.kicker}
+AWS vs local
+:::
+
+| Cumulative transfer cases              | TiB per month | Cost per month |
+| ------------------------------------   | --------:     | -------------: |
+| L2 once, for L3 done elsewhere         | {{< var cost.eg_l2_tib >}} | {{< var cost.eg_l2 >}} |
+| \+ L1 delivery (start of mission)      | {{< var cost.eg_l1_tib >}} | {{< var cost.eg_l1 >}} |
+| \+ L0 copy to an archive               | {{< var cost.eg_l0_tib >}} | {{< var cost.eg_l0 >}} |
+| \+ NASA copy of L2 and L3              | {{< var cost.eg_nasa_tib >}} | {{< var cost.eg_nasa >}} |
+| \+ Users: {{< var cost.shares >}} of new monthly L2/L3 | {{< var cost.eg_sci_tib >}} | {{< var cost.eg_sci >}} |
+
+## Storage over the mission
+
+::: {.kicker}
+AWS vs local
+:::
+
+:::: {.grid-2}
+::: {.card .blue}
+::: {.label}
+S3: where data is kept
+:::
+
+- **L0, kept for the mission:** 30 days in S3 Standard, then Glacier Flexible Retrieval ({{< var cost.glacier_rate >}}/GB-month; bulk retrieval bytes/requests are free; temporary storage and egress are extra). Each year kept adds about {{< var cost.l0_growth >}} a month
+- About {{< var cost.l0_files >}} L0 files a day cost {{< var cost.m_l0_moves >}} a month just to move into Glacier
+- **L1 comparison:** discard and rebuild, or retain 90 days; the latter adds roughly {{< var cost.l1_90d >}}/month plus PUTs
+- **L2 + L3:** 90 days is about {{< var cost.l23_90d >}} a month; keeping them for the mission in Glacier Instant Retrieval adds about {{< var cost.l23_growth >}} a month per year
+:::
+
+::: {.card .amber}
+::: {.label}
+EC2 disk: where the pipeline works
+:::
+
+- The pipeline only works on a normal disk (EBS, attached to the EC2 instance); it can't read or write S3 directly
+- Proposed: stage L0, process, verify S3 exports, then evict and restore on demand. A generic S3 mount hasn't been tested
+- One full day plus state needs **{{< var cost.ebs_min >}} GiB** before temporary space. A 1 TiB target only works if batch sizes are measured and capped
+- If nothing is deleted, as today: EBS alone is **{{< var cost.ebs_30 >}}/month at day 30**, {{< var cost.ebs_365 >}} at year 1
+:::
+::::
+
+::: {.banner}
+After year 1, S3 costs {{< var cost.s3_y1 >}} a month and grows by {{< var cost.s3_growth >}} a month for each further year
+:::
+
+## L2 → L3 on two GPUs in the cloud
+
+::: {.kicker}
+AWS vs local
+:::
+
+| Two GPUs                          | Per hour | 8 h a day, per month | 24 h a day, per month |
+| --------------------------------- | -------: | -------------------: | --------------------: |
+| 2× T4 16 GB | {{< var cost.gpu_t4 >}} | {{< var cost.gpu_t4_8 >}} | {{< var cost.gpu_t4_24 >}} |
+| 2× L4 24 GB | {{< var cost.gpu_l4 >}} | {{< var cost.gpu_l4_8 >}} | {{< var cost.gpu_l4_24 >}} |
+| 2× A10G 24 GB | {{< var cost.gpu_a10g >}} | {{< var cost.gpu_a10g_8 >}} | {{< var cost.gpu_a10g_24 >}} |
+| **2× A10G 24 GB, 16 vCPU / 64 GiB each (chosen for now)** | **{{< var cost.gpu_g54 >}}** | **{{< var cost.gpu_g54_8 >}}** | **{{< var cost.gpu_g54_24 >}}** |
+| 2× L40S 48 GB | {{< var cost.gpu_l40s >}} | {{< var cost.gpu_l40s_8 >}} | {{< var cost.gpu_l40s_24 >}} |
+| 2× H100 80 GB | {{< var cost.gpu_h100 >}} | {{< var cost.gpu_h100_8 >}} | {{< var cost.gpu_h100_24 >}} |
+
+::: {.compact}
+**Selected for comparison: 2× `g5.4xlarge`.** Each has an A10G (24 GB), 16 vCPUs, 64 GiB RAM and 600 GB local NVMe
+:::
+
+:::: {.grid-2 .compact}
+::: {.card .green}
+::: {.label}
+What it saves
+:::
+
+- Avoids the L2 download: {{< var cost.avoided_egress >}}/month, at the last tier's rate in each case
+- Two L4s break even at {{< var cost.l4_hours >}} hours/day each, including a 64 GiB boot-disk allowance
+- The selected `g5.4xlarge` pair breaks even at {{< var cost.l3_gpu_hours >}} hours/day each
+:::
+
+::: {.card .amber}
+::: {.label}
+What it doesn't
+:::
+
+- User L3 downloads still leave AWS; {{< var cost.shares >}} of new monthly L3 is {{< var cost.sci_l3 >}}/month at $0.09/GB before allowance
+- Keep the pipeline and GPUs in the same Region: between Regions is $0.02/GB, about {{< var cost.xr_l2 >}} a month for L2 alone
+- Required runtime and memory are still unmeasured
+:::
+::::
+
+::: {.banner}
+One GPU is half the price above
+:::
+
+## Processing only on AWS
+
+::: {.kicker}
+AWS vs local
+:::
+
+If NASA carries S3 storage and user egress, MUSE pays for compute alone
+
+:::: {.grid-2 .compact}
+::: {.card .blue}
+::: {.label}
+L0 → L2 host, per month
+:::
+
+| Item | Per month |
+| --- | ---: |
+| EC2 `m7i.2xlarge`, 24/7 | {{< var cost.proc_ec2 >}} |
+| EBS 1 TiB working disk | {{< var cost.proc_ebs >}} |
+| RDS Single-AZ `db.m7g.large` + 100 GiB | {{< var cost.proc_rds >}} |
+| NAT gateway + public IPv4 | {{< var cost.proc_nat >}} |
+| Backups, snapshots, logs, secrets | {{< var cost.proc_ops >}} |
+| **Host total** | **{{< var cost.proc_host >}}** |
+:::
+
+::: {.card .green}
+::: {.label}
+Add L2 → L3 on `g5.4xlarge` (A10G 24 GB), boot disks included
+:::
+
+| Hours a day | 1 GPU | L0 → L2 + 1 GPU | 2 GPUs | L0 → L2 + 2 GPUs |
+| ---: | ---: | ---: | ---: | ---: |
+| 4 | {{< var cost.proc_one_4 >}} | {{< var cost.proc_host_one_4 >}} | {{< var cost.proc_pair_4 >}} | {{< var cost.proc_host_pair_4 >}} |
+| 8 | {{< var cost.proc_one_8 >}} | {{< var cost.proc_host_one_8 >}} | {{< var cost.proc_pair_8 >}} | {{< var cost.proc_host_pair_8 >}} |
+| 12 | {{< var cost.proc_one_12 >}} | {{< var cost.proc_host_one_12 >}} | {{< var cost.proc_pair_12 >}} | {{< var cost.proc_host_pair_12 >}} |
+| 24 | {{< var cost.proc_one_24 >}} | {{< var cost.proc_host_one_24 >}} | {{< var cost.proc_pair_24 >}} | {{< var cost.proc_host_pair_24 >}} |
+:::
+::::
+
+::: {.banner .green}
+Excludes S3 storage, S3 requests, all egress and any GPU scratch beyond the boot disks. On-Demand prices; no Spot, reservations or archive-tier savings assumed
+
+My working assumption is that by splitting the machines, we can price each machine to what is required instead of wasting money on unused resources.
+:::
+
+## Assumptions to confirm
+
+::: {.kicker}
+AWS vs local
+:::
+
+:::: {.grid-2}
+::: {.card .blue}
+::: {.label}
+Science and operations
+:::
+
+- GPU hours per day, and GPU memory, for L2 → L3
+- User downloads below 25% of new monthly L2/L3; measure bytes/repeats and cache location/hit rate
+- Compare both L1 policies and both L3 locations; confirm L2/L3 lifetime and optional L0/NASA exports
+- L3 product definition: 124 or 366 GiB/day are alternatives; link a reproducible size report
+:::
+
+::: {.card .amber}
+::: {.label}
+Engineering
+:::
+
+- AWS speed is unmeasured. Locally, 2 workers did 33.6 GB/h on the heavy placeholder, so one day takes about 12 hours on a fast desktop
+:::
+::::
+
+::: {.banner}
+Base rates checked against AWS catalogs on 23 September 2026. Oregon prices; N. California is {{< var cost.nc_pct >}} higher. No work on optimizing cost has happened
+:::
+
+## AWS deployment shape
+
+::: {.kicker}
+AWS vs local
+:::
+
+:::: {.grid-4}
+::: {.card .blue}
+::: {.label}
+Compute
+:::
+
+EC2 / Batch / ECS workers for daily processing and reprocessing bursts
+:::
+
+::: {.card .green}
+::: {.label}
+Database
+:::
+RDS PostgreSQL with automated backups and point-in-time recovery (PITR)
+:::
+
+::: {.card .amber}
+::: {.label}
+Storage
+:::
+
+EBS / EFS / FSx / S3
+:::
+
+::: {.card .red}
+::: {.label}
+Network / archive
+:::
+
+Ingress, egress, cross-Region copies, retention and archive delivery can dominate cost
+:::
+::::

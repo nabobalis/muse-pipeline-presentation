@@ -26,8 +26,8 @@ format:
 
 {{< include sections/03-science-calibration.qmd >}}
 
-{{< include sections/04-aws-vs-local.qmd >}}
+{{< include sections/04-l2-to-l3.qmd >}}
 
-{{< include sections/05-l2-to-l3.qmd >}}
+{{< include sections/05-aws-vs-local.qmd >}}
 
 {{< include sections/06-questions.qmd >}}

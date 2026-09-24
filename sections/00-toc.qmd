@@ -13,7 +13,7 @@ Table of contents
 Overview and requirements
 :::
 ::: {.toc-desc}
-Mission framing, throughput constraints, deadlines, and level terminology.
+Data volumes, deadlines, throughput constraints and level terminology
 :::
 :::
 
@@ -25,7 +25,7 @@ Mission framing, throughput constraints, deadlines, and level terminology.
 Pipeline architecture
 :::
 ::: {.toc-desc}
-How the framework is structured and what design assumptions it makes.
+How the framework is structured and what design assumptions it makes
 :::
 :::
 
@@ -37,31 +37,31 @@ How the framework is structured and what design assumptions it makes.
 L0 → L2 calibration
 :::
 ::: {.toc-desc}
-What is still placeholder science, and where final algorithms must land.
-:::
-:::
-
-::: {.toc-item .amber}
-::: {.toc-num}
-04
-:::
-::: {.toc-title}
-AWS vs local
-:::
-::: {.toc-desc}
-How to frame the deployment-location trade study at a decision level.
+What is still placeholder science, and where the final algorithms go
 :::
 :::
 
 ::: {.toc-item .indigo}
 ::: {.toc-num}
-05
+04
 :::
 ::: {.toc-title}
 L2 → L3
 :::
 ::: {.toc-desc}
-Open product-definition work and the boundary between framework and science.
+Open product-definition work and the boundary between framework and science
+:::
+:::
+
+::: {.toc-item .amber}
+::: {.toc-num}
+05
+:::
+::: {.toc-title}
+AWS vs local
+:::
+::: {.toc-desc}
+What AWS could cost, and what changes that cost
 :::
 :::
 
@@ -73,7 +73,7 @@ Open product-definition work and the boundary between framework and science.
 Questions
 :::
 ::: {.toc-desc}
-Open decisions, evidence gaps, and discussion points for the next pass.
+Open decisions and what we still need to know
 :::
 :::
 ::::

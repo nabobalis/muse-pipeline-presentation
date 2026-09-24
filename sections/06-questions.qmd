@@ -24,8 +24,8 @@ Calibration
 :::
 - Which calibration decisions need to be made first?
   - Is a pipeline without calibration acceptable if it's otherwise complete?
-- What the functional difference between NRT and non-NRT data?
-- Dark + Flats → Models? Files? Updated often?
+- What is the functional difference between NRT and non-NRT data?
+- Darks and flats → Models? Files? Updated often?
 :::
 
 ::: {.card .green}

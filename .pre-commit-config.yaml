@@ -1,0 +1,52 @@
+repos:
+    # This should be before any formatting hooks like isort
+  - repo: https://github.com/PyCQA/docformatter
+    rev: v1.7.8
+    hooks:
+      - id: docformatter
+        args: ["--black", "--pre-summary-newline", "--pre-summary-space", "--make-summary-multi-line", "--close-quotes-on-newline", "--in-place"]
+        additional_dependencies: ["tomli"]
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: "v0.16.5"
+    hooks:
+      - id: ruff-check
+        args: ["--fix", "--unsafe-fixes"]
+        types: [python]
+      - id: ruff-format
+  - repo: https://github.com/PyCQA/isort
+    rev: 9.0.0b2
+    hooks:
+      - id: isort
+        types: [python]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-ast
+        types: [python]
+      - id: check-case-conflict
+        types: [python]
+      - id: trailing-whitespace
+        types_or: [python, rst]
+      - id: check-yaml
+        types: [yaml]
+      - id: check-toml
+        types: [toml]
+      - id: debug-statements
+        types: [python]
+      - id: check-added-large-files
+        args: ["--enforce-all", "--maxkb=1054"]
+      - id: end-of-file-fixer
+        types_or: [python, rst, yaml]
+      - id: mixed-line-ending
+        types_or: [python, rst]
+  # See https://github.com/python-trio/trio/pull/3255
+  - repo: https://github.com/adhtruong/mirrors-typos
+    rev: v1.49.0
+    hooks:
+      - id: typos
+        types_or: [python, rst]
+  - repo: https://github.com/sphinx-contrib/sphinx-lint
+    rev: v1.0.2
+    hooks:
+      - id: sphinx-lint
+        types_or: [python, rst]

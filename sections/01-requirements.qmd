@@ -12,10 +12,10 @@ Overview and requirements
 :::
 
 ::: {.section-subhead}
-What the pipeline needs to deliver and on what cadence
+What the pipeline needs to deliver and how often
 :::
 
-## Mission framing
+## What comes in and when
 
 ::: {.kicker}
 Overview and requirements
@@ -54,10 +54,10 @@ Program milestones
 ::::
 
 ::: {.banner}
-The goal is to create a pipeline that can keep up with regular arrivals and meet all downstream product timelines
+The goal is a pipeline that keeps up with the daily data and meets the product deadlines
 :::
 
-## What this schedule implies
+## What this schedule implies (to me)
 
 ::: {.kicker}
 Overview and requirements
@@ -80,9 +80,9 @@ Where uncertainty remains
 :::
 
 - L2.5 and L3 compute costs and runtimes are still uncertain
-  - Torch solvers are under active development
+  - Torch solvers are still being written
 - Final L0 → L1 science algorithms will change runtime and memory requirements
-- Host qualification still matters even if framework tests already look promising
+- We still need to test on the real hardware, even though the framework tests look good
 :::
 ::::
 
@@ -104,7 +104,7 @@ Raw telemetry as FITS
 ::: {.node .blue}
 **L0.5**
 
-Temporary dark / flat staging (first-light)
+Temporary dark / flat staging (first light)
 :::
 ::: {.arrow}
 →
@@ -150,6 +150,6 @@ L0 → L2 framework behavior and deployment
 ::: {.banner .amber}
 **Future work**
 
-L2.5 and L3 framework workflow, validation, and compute characterization.
+L2.5 and L3 framework workflow, validation and measuring what compute they need
 :::
 ::::
