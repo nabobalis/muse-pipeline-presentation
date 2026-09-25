@@ -106,7 +106,7 @@ Changes which rows reach each stage; not shown in this outline
 ::: {.banner .amber}
 This workflow is not in the pipeline yet; parts exist in the muse library
 <br><br>
-The Miro board has the correct (?) outline
+[The Miro board has the correct outline](https://miro.com/app/board/uXjVG5jlg-Q=/)
 :::
 
 ## What has to be decided and built
