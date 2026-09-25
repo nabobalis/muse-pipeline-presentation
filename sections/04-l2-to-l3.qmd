@@ -15,7 +15,7 @@ L2 → L3
 The big beautiful elephant
 :::
 
-## Outline workflow
+## Outline - Incorrect as its based on GitLab wiki page
 
 ::: {.kicker}
 L2 → L3
@@ -39,7 +39,7 @@ Skip rows with no signal
 →
 :::
 ::: {.node .blue}
-**GFAT + filter**
+**GFAT**
 
 L3A
 :::
@@ -47,7 +47,7 @@ L3A
 →
 :::
 ::: {.node .blue}
-**SVD branch**
+**Compact-SDC branch**
 
 L3B
 :::
@@ -68,15 +68,15 @@ GOOD / OK / BAD
 ::: {.node .amber}
 **Trigger**
 
-Which rows go to SDC
+Which rows go to full-SDC
 :::
 ::: {.arrow}
 →
 :::
 ::: {.node .blue}
-**SDC branch**
+**Full-SDC branch**
 
-L2.5
+L3D
 :::
 ::: {.arrow}
 →
@@ -98,13 +98,15 @@ Moments + QUALITY + HF_FLAGS
 
 ::: {.card .center .red}
 ::: {.label}
-Heuristic filtering
+Heuristic Filter
 :::
 Changes which rows reach each stage; not shown in this outline
 :::
 
 ::: {.banner .amber}
 This workflow is not in the pipeline yet; parts exist in the muse library
+<br><br>
+The Miro board has the correct (?) outline
 :::
 
 ## What has to be decided and built
@@ -129,10 +131,10 @@ Decisions to be made
 muse library work first
 :::
 
-- Make the filter callable by the pipeline: a method registry, and "not run" instead of exceptions for missing inputs
+- Make the Heuristic Filter callable by the pipeline: a method registry, and "not run" instead of exceptions for missing inputs
   - This is a major refactor
 - Configuration instead of hard-coded values
-  - The pipeline must pin the chosen configuration
+  - The pipeline must pin the chosen configuration and values
 :::
 
 ::: {.card .green}

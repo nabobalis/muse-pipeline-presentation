@@ -244,7 +244,7 @@ AWS vs local
 What it saves
 :::
 
-- Avoids the L2 download: {{< var cost.avoided_egress >}}/month, at the last tier's rate in each case
+- Avoids the L2 download: {{< var cost.avoided_egress >}}/month
 - Two L4s break even at {{< var cost.l4_hours >}} hours/day each, including a 64 GiB boot-disk allowance
 - The selected `g5.4xlarge` pair breaks even at {{< var cost.l3_gpu_hours >}} hours/day each
 :::
@@ -254,7 +254,7 @@ What it saves
 What it doesn't
 :::
 
-- User L3 downloads still leave AWS; {{< var cost.shares >}} of new monthly L3 is {{< var cost.sci_l3 >}}/month at $0.09/GB before allowance
+- User L3 downloads still leave AWS
 - Keep the pipeline and GPUs in the same Region: between Regions is $0.02/GB, about {{< var cost.xr_l2 >}} a month for L2 alone
 - Required runtime and memory are still unmeasured
 :::
@@ -262,6 +262,8 @@ What it doesn't
 
 ::: {.banner}
 One GPU is half the price above
+
+The goal is to run both the compact-SDC and full-SDC (FISTA) on  the GPU
 :::
 
 ## Processing only on AWS
