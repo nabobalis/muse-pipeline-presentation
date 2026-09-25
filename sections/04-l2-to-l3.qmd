@@ -109,6 +109,10 @@ This workflow is not in the pipeline yet; parts exist in the muse library
 [The Miro board has the correct outline](https://miro.com/app/board/uXjVG5jlg-Q=/)
 :::
 
+##
+
+![](sections/image.png){.r-stretch style="display: block; margin: auto"}
+
 ## What has to be decided and built
 
 ::: {.kicker}
