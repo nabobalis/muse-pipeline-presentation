@@ -135,8 +135,8 @@ Decisions to be made
 muse library work first
 :::
 
-- Make the Heuristic Filter callable by the pipeline: a method registry, and "not run" instead of exceptions for missing inputs
-  - This is a major refactor
+- Make the L2-L3 callable by the pipeline: a method registry, and "not run" instead of exceptions for missing inputs
+  - This will be a major refactor
 - Configuration instead of hard-coded values
   - The pipeline must pin the chosen configuration and values
 :::
